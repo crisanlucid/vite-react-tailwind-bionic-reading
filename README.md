@@ -24,3 +24,6 @@ yarn && yarn dev
 ## Contribution
 
 Pull requests are welcome :)
+
+## Preview
+Frontend live demo ([click](https://crisanlucid.github.io/vite-react-tailwind-bionic-reading/))
