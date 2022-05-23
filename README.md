@@ -1,6 +1,8 @@
-# vite-react-tailwind-bionic-reading
-Bionic Reading - Convert Text into Better Way to Read Faster
 
+# :notebook: Bionic Reading - Convert Text into Better Way to Read Faster
+vite-react-tailwind-bionic-reading project 
+
+![Bionic Reading project image](./src/assets/bionic_reader_v2.PNG)
 ## What is Next? 🌟
 
 | Name                                                                              | Short Description                                          | Status       |
