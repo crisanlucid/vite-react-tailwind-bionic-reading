@@ -27,3 +27,9 @@ Pull requests are welcome :)
 
 ## Preview
 Frontend live demo ([click](https://crisanlucid.github.io/vite-react-tailwind-bionic-reading/))
+
+
+## Stars history
+
+[![Stargazers over time](https://starchart.cc/crisanlucid/vite-react-tailwind-bionic-reading.svg)](https://starchart.cc/crisanlucid/vite-react-tailwind-bionic-reading)
+
