@@ -1,14 +1,16 @@
 
-# :notebook: Bionic Reading - Convert Text into Better Way to Read Faster
+# :notebook: Bionic ReadingTool - a revolutionary way for guiding the eyes through text using artificial fixation spots to make reading easier. As a result, the reader's attention is drawn solely to the highlighted starting letters, leaving the word to be completed by the brain center. Bionic Reading attempts to foster greater in-depth reading and understanding of textual content in a digital environment dominated by shallow kinds of reading.
+
 vite-react-tailwind-bionic-reading project 
 
-![Bionic Reading project image](./src/assets/bionic_reader_v2.PNG)
+![Bionic ReadingTool project image](./src/assets/bionic_reader_v2.PNG)
 ## What is Next? 🌟
 
 | Name                                                                              | Short Description                                          | Status       |
 | --------------------------------------------------------------------------------- | ---------------------------------------------------------- | ---------- |
 | Save as PDF                                   | Create a button and download as PDF the text | backlog
 | Show characters                                   | Display Characters after textarea | backlog
+| Increase fonts                                   | Create functionality to increase/descrease fonts size | backlog
 
 
 ### How to Run
