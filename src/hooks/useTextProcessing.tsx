@@ -8,7 +8,7 @@ export const useTextProcessing = () => {
   const [pretext, setPretext] = useState("");
   const [listPrepText, setListPrepText] = useState([] as JSX.Element[]);
 
-  const onChangeTextare = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const onChangeTextarea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setText(e?.target.value);
   };
 
@@ -69,6 +69,6 @@ export const useTextProcessing = () => {
     isDisabled,
     onClickButton,
     processData,
-    onChangeTextare,
+    onChangeTextarea,
   };
 };
