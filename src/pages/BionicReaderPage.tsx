@@ -45,9 +45,13 @@ export const BionicReaderPage: FC = () => {
               Convert
             </button>
           </section>
-          <section className="text-left py-4 overflow-hidden">
-            <h3 className="text-lg font-bold pb-4">Read Section:</h3>
-            <p className="whitespace-pre-wrap break-all">
+          <section className="text-left py-4 overflow-hidden flex flex-col">
+            <h3 className="text-lg font-bold pb-4 ">Read Section:</h3>
+
+            <p
+              className="whitespace-pre-wrap break-all basis-11/12 border border-solid border-gray-300
+              rounded-lg shadow mb-4"
+            >
               {pretext}
               <span className="t-text">
                 {listPrepText.map((text) => (
@@ -55,6 +59,14 @@ export const BionicReaderPage: FC = () => {
                 ))}
               </span>
             </p>
+
+            <button
+              className="hover:bg-blue-700 bg-blue-600 text-gray-100 py-2 px-4 rounded self-start "
+              disabled={isDisabled}
+              onClick={onClickButton}
+            >
+              Download
+            </button>
           </section>
         </div>
       </div>
