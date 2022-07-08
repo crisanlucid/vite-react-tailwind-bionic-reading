@@ -9,7 +9,7 @@ vite-react-tailwind-bionic-reading project
 
 | Name                                                                              | Short Description                                          | Status       |
 | --------------------------------------------------------------------------------- | ---------------------------------------------------------- | ---------- |
-| Save as PDF                                   | Create a button and download as PDF the text | backlog
+| Save as PDF                                   | Create a button and download as PDF the text | ☑️
 | Show characters                                   | Display Characters after textarea | backlog
 | Increase fonts                                   | Create functionality to increase/descrease fonts size | backlog
 
@@ -23,6 +23,10 @@ or
 ```
 yarn && yarn dev
 ```
+
+## PDF functionality
+![Save text as PDF file](./src/assets/download_functionality.PNG)
+
 
 ## Contribution
 
