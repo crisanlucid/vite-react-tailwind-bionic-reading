@@ -5,6 +5,7 @@ import { useTextProcessing } from "../hooks/useTextProcessing";
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
 
+const FILE_PDF_NAME = "download.pdf";
 export const BionicReaderPage: FC = () => {
   const { listPrepText, isDisabled, onClickButton, onChangeTextarea, pretext } =
     useTextProcessing();
@@ -13,8 +14,9 @@ export const BionicReaderPage: FC = () => {
     html2canvas(inputRef.current as unknown as HTMLElement).then((canvas) => {
       const imgData = canvas.toDataURL("image/png");
       const pdf = new jsPDF();
-      pdf.addImage(imgData, "JPEG", 0, 0);
-      pdf.save("download.pdf");
+      const width = pdf.internal.pageSize.getWidth();
+      pdf.addImage(imgData, "JPEG", 5, 10, width - 10, 0);
+      pdf.save(FILE_PDF_NAME);
     });
   };
 
