@@ -20,13 +20,13 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - uses: actions/setup-node@v3.4.1
+    - uses: actions/setup-node@v3
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-        cache-dependency-path: subdir/yarn.lock
+#         cache: 'npm'
+#         cache-dependency-path: subdir/yarn.lock
         
     - name: Install Dependencies
       run: yarn && yarn build
