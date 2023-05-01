@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+const colors = require("tailwindcss/colors");
+
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
   mode: "jit",
@@ -7,6 +10,9 @@ module.exports = {
       body: ["Open Sans", "sans-serif"],
     },
     extend: {
+      colors: {
+        ...colors,
+      },
       screens: {
         mf: "990px",
       },
@@ -30,5 +36,5 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: ["@tailwindcss/forms"],
 };
