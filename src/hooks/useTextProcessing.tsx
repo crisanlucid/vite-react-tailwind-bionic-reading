@@ -1,11 +1,11 @@
-import React, { FC, useState } from "react";
+import React, { FC, useState } from 'react';
 
-import { timeout } from "../util/helpers";
+import { timeout } from '../util/helpers';
 
 export const useTextProcessing = () => {
   const [isDisabled, setIsDisabled] = useState(false);
-  const [text, setText] = useState("");
-  const [pretext, setPretext] = useState("");
+  const [text, setText] = useState('');
+  const [pretext, setPretext] = useState('');
   const [listPrepText, setListPrepText] = useState([] as JSX.Element[]);
 
   const onChangeTextarea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -13,7 +13,7 @@ export const useTextProcessing = () => {
   };
 
   const processData = () => {
-    const prepText = text.split(" ");
+    const prepText = text.split(' ');
     console.log(prepText);
 
     const listText = prepText.map((elem) => {
@@ -36,7 +36,7 @@ export const useTextProcessing = () => {
               <br />
             </>
           )}
-          <span className="bio-letter">{preElem.slice(0, mid)}</span>
+          <span className='bio-letter'>{preElem.slice(0, mid)}</span>
           {preElem.slice(mid)}
         </>
       );
@@ -46,21 +46,21 @@ export const useTextProcessing = () => {
   };
 
   const onClickButton = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    setPretext("processing...");
+    setPretext('processing...');
     setListPrepText([]);
 
-    console.log("wait...");
+    console.log('wait...');
     setIsDisabled(true);
 
     const listPrepText = processData();
-    setPretext("processing...");
+    setPretext('processing...');
 
     await timeout(2000);
 
     setIsDisabled(false);
     setListPrepText(listPrepText);
-    setPretext("");
-    console.log("done...");
+    setPretext('');
+    console.log('done...');
   };
 
   return {
