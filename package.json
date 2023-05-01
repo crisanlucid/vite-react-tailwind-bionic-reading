@@ -7,7 +7,9 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "stylelint": "npx stylelint \"./**/*.{css}\" --config \"./stylelint.config.js\"",
-    "stylelint:fix": "npm run stylelint -- --fix"
+    "stylelint:fix": "npm run stylelint -- --fix",
+    "prettier:fix": "prettier --config ./prettier.config.js --write ./src/**/*.{css,ts,tsx} ",
+    "prettier:check": "prettier --config ./prettier.config.js --check ./src/**/*.{css,ts,tsx}"
   },
   "dependencies": {
     "html2canvas": "^1.4.1",
@@ -29,6 +31,7 @@
     "postcss-nested": "^6.0.1",
     "postcss-preset-env": "^8.3.2",
     "postcss-reporter": "^7.0.5",
+    "prettier": "^2.8.8",
     "stylelint": "^15.6.0",
     "stylelint-config-css-modules": "^4.2.0",
     "stylelint-config-prettier": "^9.0.5",
