@@ -1,23 +1,27 @@
-import React, { FC, useState, useRef } from "react";
+import React, { FC, useState, useRef } from 'react';
 
-import { useTextProcessing } from "../hooks/useTextProcessing";
+import { useTextProcessing } from '../hooks/useTextProcessing';
 
-import html2canvas from "html2canvas";
-import { jsPDF } from "jspdf";
+import html2canvas from 'html2canvas';
+import { jsPDF } from 'jspdf';
 
-const FILE_PDF_NAME = "download.pdf";
+const FILE_PDF_NAME = 'download.pdf';
 export const BionicReaderPage: FC = () => {
-  const { listPrepText, isDisabled, onClickButton, onChangeTextarea, pretext } =
-    useTextProcessing();
+  const [isUnicode, setIsUnicode] = useState(false);
+  const { listPrepText, isDisabled, onClickButton, onChangeTextarea, pretext } = useTextProcessing(isUnicode);
   const inputRef = useRef(null);
   const printDocument = () => {
     html2canvas(inputRef.current as unknown as HTMLElement).then((canvas) => {
-      const imgData = canvas.toDataURL("image/png");
+      const imgData = canvas.toDataURL('image/png');
       const pdf = new jsPDF();
       const width = pdf.internal.pageSize.getWidth();
-      pdf.addImage(imgData, "JPEG", 5, 10, width - 10, 0);
+      pdf.addImage(imgData, 'JPEG', 5, 10, width - 10, 0);
       pdf.save(FILE_PDF_NAME);
     });
+  };
+
+  const onConvertToUnicodeChange = (e: any) => {
+    setIsUnicode(e.target.value);
   };
 
   return (
@@ -52,13 +56,12 @@ export const BionicReaderPage: FC = () => {
               placeholder="Empty"
               onChange={onChangeTextarea}
             ></textarea>
-            <button
-              className="hover:bg-blue-700 bg-blue-600 text-gray-100 py-2 px-4 rounded"
-              disabled={isDisabled}
-              onClick={onClickButton}
-            >
+            <button className="hover:bg-blue-700 bg-blue-600 text-gray-100 py-2 px-4 rounded" disabled={isDisabled} onClick={onClickButton}>
               Convert
             </button>
+            &nbsp;&nbsp;
+            <input type="checkbox" onChange={onConvertToUnicodeChange} />
+            <span className="font-normal"> Convert with Unicode</span>
           </section>
           <section className="text-left py-4 overflow-hidden flex flex-col">
             <h3 className="text-lg font-bold pb-4 ">Read Section:</h3>
