@@ -11,13 +11,15 @@ export const BionicReaderPage: FC = () => {
   const { listPrepText, isDisabled, onClickButton, onChangeTextarea, pretext } = useTextProcessing(isUnicode);
   const inputRef = useRef(null);
   const printDocument = () => {
-    html2canvas(inputRef.current as unknown as HTMLElement).then((canvas) => {
-      const imgData = canvas.toDataURL('image/png');
-      const pdf = new jsPDF();
-      const width = pdf.internal.pageSize.getWidth();
-      pdf.addImage(imgData, 'JPEG', 5, 10, width - 10, 0);
-      pdf.save(FILE_PDF_NAME);
-    });
+    html2canvas(inputRef.current as unknown as HTMLElement)
+      .then((canvas) => {
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new jsPDF();
+        const width = pdf.internal.pageSize.getWidth();
+        pdf.addImage(imgData, "JPEG", 5, 10, width - 10, 0);
+        pdf.save(FILE_PDF_NAME);
+      })
+      .catch((e) => console.error(e));
   };
 
   const onConvertToUnicodeChange = (e: any) => {
