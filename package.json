@@ -6,7 +6,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "stylelint": "npx stylelint \"./**/*.{css}\" --config \"./stylelint.config.js\"",
+    "stylelint": "npx stylelint \"./**/*.{css,ts,tsx}\" --config \"./stylelint.config.js\"",
     "stylelint:fix": "npm run stylelint -- --fix",
     "prettier:fix": "prettier --config ./prettier.config.js --write ./src/**/*.{css,ts,tsx} ",
     "prettier:check": "prettier --config ./prettier.config.js --check ./src/**/*.{css,ts,tsx}",
