@@ -27,8 +27,25 @@
  * w: fullwidth
  */
 
-export default function toUnicodeVariant(str, variant, flags) {
-  const offsets = {
+export type TextOpType = number | string | { d: number | string };
+
+interface IObjectElement {
+  [key: string]: TextOpType;
+}
+
+interface IStructure {
+  [key: string]: IObjectElement;
+}
+interface IVariantOffsets {
+  [key: string]: string;
+}
+
+interface IOffsets {
+  [key: string]: TextOpType[];
+}
+
+export const toUnicodeVariant = (str: string, variant: string, flags = '') => {
+  const offsets: IOffsets = {
     m: [0x1d670, 0x1d7f6],
     b: [0x1d400, 0x1d7ce],
     i: [0x1d434, 0x00030],
@@ -51,7 +68,7 @@ export default function toUnicodeVariant(str, variant, flags) {
     u: [0x2090, 0xff10],
   };
 
-  const variantOffsets = {
+  const variantOffsets: IVariantOffsets = {
     monospace: 'm',
     bold: 'b',
     italic: 'i',
@@ -74,7 +91,7 @@ export default function toUnicodeVariant(str, variant, flags) {
   };
 
   // special characters (absolute values)
-  const special = {
+  const special: IStructure = {
     m: {
       ' ': 0x2000,
       '-': 0x2013,
@@ -122,20 +139,22 @@ export default function toUnicodeVariant(str, variant, flags) {
   //support for squared letters small cases
   //support for squared letters negative small cases
   ['p', 'w', 'on', 'q', 'qn'].forEach((t) => {
-    for (var i = 97; i <= 122; i++) {
-      special[t][String.fromCharCode(i)] = offsets[t][0] + (i - 97);
+    for (let i = 97; i <= 122; i++) {
+      special[t as keyof IStructure][String.fromCharCode(i) as keyof IStructure] =
+        Number(offsets[t as keyof IOffsets][0]) + (i - 97);
     }
   });
 
   const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
   const numbers = '0123456789';
 
-  const getType = function (variant) {
-    if (variantOffsets[variant]) return variantOffsets[variant];
-    if (offsets[variant]) return variant;
+  const getType = (variant: string): string => {
+    if (variantOffsets[variant]) return variantOffsets[variant as keyof IVariantOffsets];
+    if (offsets[variant as keyof IOffsets]) return variant;
     return 'm'; //monospace as default
   };
-  const getFlag = function (flag, flags) {
+
+  const getFlag = (flag: string, flags: string): boolean => {
     if (!flags) return false;
     return flag.split('|').some((f) => flags.split(',').indexOf(f) > -1);
   };
@@ -147,11 +166,12 @@ export default function toUnicodeVariant(str, variant, flags) {
 
   for (let c of str) {
     let index;
-    if (special[type] && special[type][c]) c = String.fromCodePoint(special[type][c]);
+    if (special[type as keyof IStructure] && special[type][c])
+      c = String.fromCodePoint(special[type][c] as number);
     if (type && (index = chars.indexOf(c)) > -1) {
-      result += String.fromCodePoint(index + offsets[type][0]);
+      result += String.fromCodePoint(index + (offsets[type][0] as number));
     } else if (type && (index = numbers.indexOf(c)) > -1) {
-      result += String.fromCodePoint(index + offsets[type][1]);
+      result += String.fromCodePoint(index + (offsets[type][1] as number));
     } else {
       result += c;
     }
@@ -159,4 +179,4 @@ export default function toUnicodeVariant(str, variant, flags) {
     if (strike) result += '\u0336'; // add combining strike
   }
   return result;
-}
+};

@@ -1,8 +1,6 @@
-import React, { FC, useState } from 'react';
-import { timeout } from '../util/helpers';
-
-// @ts-ignore
-import toUnicodeVariant from './toUnicodeVariant';
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+import React, { useState } from 'react';
+import { timeout, toUnicodeVariant } from '../util';
 
 export const useTextProcessing = (isUnicode: boolean) => {
   const [isDisabled, setIsDisabled] = useState(false);
@@ -40,7 +38,7 @@ export const useTextProcessing = (isUnicode: boolean) => {
           {isUnicode ? (
             <span key={index}>{toUnicodeVariant(preElem.slice(0, mid), 'bold')}</span>
           ) : (
-            <span key={index} className="bio-letter">
+            <span key={index} className='bio-letter'>
               {preElem.slice(0, mid)}
             </span>
           )}
@@ -52,11 +50,11 @@ export const useTextProcessing = (isUnicode: boolean) => {
     return listText;
   };
 
-  const onClickButton = async (e: React.MouseEvent<HTMLButtonElement>) => {
+  const onClickButton = async (e: React.MouseEvent<HTMLButtonElement>): Promise<void> => {
     setPretext('processing...');
     setListPrepText([]);
 
-    console.log('wait...');
+    console.log('wait...', { e });
     setIsDisabled(true);
 
     const listPrepText = processData();
