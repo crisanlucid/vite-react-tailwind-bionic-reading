@@ -1,11 +1,11 @@
-import { FC, useState } from "react";
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+import React, { useState } from 'react';
+import { timeout, toUnicodeVariant } from '../util';
 
-import { timeout } from "../util/helpers";
-
-export const useTextProcessing = () => {
+export const useTextProcessing = (isUnicode: boolean) => {
   const [isDisabled, setIsDisabled] = useState(false);
-  const [text, setText] = useState("");
-  const [pretext, setPretext] = useState("");
+  const [text, setText] = useState('');
+  const [pretext, setPretext] = useState('');
   const [listPrepText, setListPrepText] = useState([] as JSX.Element[]);
 
   const onChangeTextarea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -13,10 +13,10 @@ export const useTextProcessing = () => {
   };
 
   const processData = () => {
-    const prepText = text.split(" ");
+    const prepText = text.split(' ');
     console.log(prepText);
 
-    const listText = prepText.map((elem) => {
+    const listText = prepText.map((elem, index) => {
       let preElem = elem;
       let showNewLine = false;
       const match = /\r|\n/.exec(elem);
@@ -27,7 +27,6 @@ export const useTextProcessing = () => {
 
       const mid = Math.floor(preElem.length / 2);
 
-      console.log(preElem.slice(mid));
       return (
         <>
           {showNewLine && (
@@ -36,7 +35,13 @@ export const useTextProcessing = () => {
               <br />
             </>
           )}
-          <span className="bio-letter">{preElem.slice(0, mid)}</span>
+          {isUnicode ? (
+            <span key={index}>{toUnicodeVariant(preElem.slice(0, mid), 'bold')}</span>
+          ) : (
+            <span key={index} className='bio-letter'>
+              {preElem.slice(0, mid)}
+            </span>
+          )}
           {preElem.slice(mid)}
         </>
       );
@@ -45,22 +50,22 @@ export const useTextProcessing = () => {
     return listText;
   };
 
-  const onClickButton = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    setPretext("processing...");
+  const onClickButton = async (e: React.MouseEvent<HTMLButtonElement>): Promise<void> => {
+    setPretext('processing...');
     setListPrepText([]);
 
-    console.log("wait...");
+    console.log('wait...', { e });
     setIsDisabled(true);
 
     const listPrepText = processData();
-    setPretext("processing...");
+    setPretext('processing...');
 
     await timeout(2000);
 
     setIsDisabled(false);
     setListPrepText(listPrepText);
-    setPretext("");
-    console.log("done...");
+    setPretext('');
+    console.log('done...');
   };
 
   return {
