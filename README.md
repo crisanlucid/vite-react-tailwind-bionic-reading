@@ -10,6 +10,7 @@ vite-react-tailwind-bionic-reading project
 | Name                                                                              | Short Description                                          | Status       |
 | --------------------------------------------------------------------------------- | ---------------------------------------------------------- | ---------- |
 | Save as PDF                                   | Create a button and download as PDF the text | ☑️
+| Unicode Support                                   | Insert unicode characters | ☑️
 | Show characters                                   | Display Characters after textarea | backlog
 | Increase fonts                                   | Create functionality to increase/descrease fonts size | backlog
 
