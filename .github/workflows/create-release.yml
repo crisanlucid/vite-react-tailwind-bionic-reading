@@ -10,8 +10,8 @@ jobs:
     name: Publish to npm
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@3.5.3
-      - uses: actions/setup-node@v3.4.1
+      - uses: actions/checkout@v3
+      - uses: action/setup-node@v3
         with:
           node-version: '18'
           cache: 'npm'
@@ -29,7 +29,7 @@ jobs:
     needs: publish
     steps:
       - name: Checkout code
-        uses: actions/setup-node@v3.4.1
+        uses: action/setup-node@v3
       - name: Create Release
         run: gh release create ${{ github.ref }} --generate-notes
         env:
