@@ -17,9 +17,10 @@ jobs:
           cache: 'npm'
       - name: Publish
         run: |
-          npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
-          npm ci
-          npm publish
+          yarn config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
+          yarn install --frozen-lockfile
+          yarn build
+          yarn publish
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
