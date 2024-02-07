@@ -82,7 +82,6 @@ module.exports = {
     "@typescript-eslint/no-unused-vars":
       process.env.NODE_ENV === "production" ? "warn" : "error",
     "react/prop-types": 0,
-    "react/react-in-jsx-scope": 0,
     "@typescript-eslint/no-empty-function": 0,
   },
 };
