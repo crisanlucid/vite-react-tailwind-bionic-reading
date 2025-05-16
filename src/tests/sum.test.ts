@@ -1,5 +1,7 @@
 // sum.test.ts
 
+import { expect, test } from 'vitest';
+
 type sumType = (a: number, b: number) => {}
 
 const sum: sumType = (a, b) => {
