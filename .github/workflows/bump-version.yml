@@ -1,6 +1,6 @@
 # Manually triggered version bump.
-# Commits any package-lock.json changes, bumps package.json, pushes
-# directly to main, then pushes the tag (triggers create-release.yml).
+# Bumps package.json + package-lock.json, pushes directly to main,
+# then pushes the tag (triggers create-release.yml).
 
 name: Bump version
 
@@ -26,25 +26,10 @@ jobs:
       - name: Check out source
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-          cache: 'npm'
-
-      - name: Install npm packages
-        run: npm ci
-
       - name: Setup Git
         run: |
           git config user.name 'Lucian Bot'
           git config user.email 'crisan.lucid@yahoo.com'
-
-      - name: Commit package-lock.json if updated by npm ci
-        run: |
-          git add package-lock.json
-          git diff --cached --quiet package-lock.json || \
-            git commit -m "chore: update package-lock.json"
 
       - name: Bump version
         run: npm version ${{ github.event.inputs.version }}
