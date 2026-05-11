@@ -4,9 +4,7 @@ module.exports = {
     'stylelint-config-standard',
     'stylelint-config-recess-order',
     'stylelint-config-css-modules',
-    'stylelint-config-prettier',
   ],
-  plugins: ['stylelint-scss'],
   ignoreFiles: ['./node_modules/**/*.css', './dist/**/*.css', './coverage/**/*.css'],
   rules: {
     'at-rule-no-unknown': [
