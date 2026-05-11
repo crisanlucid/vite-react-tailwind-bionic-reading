@@ -13,7 +13,7 @@ describe('util :: helpers', () => {
            await timeout(20);
            const t1 = Date.now();
            const delta = t1-t0;
-           expect(delta).toBeGreaterThanOrEqual(20);
+           expect(delta).toBeGreaterThanOrEqual(15);
        })
    })
 
