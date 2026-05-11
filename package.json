@@ -14,7 +14,8 @@
     "lint:fix": "npm run lint -- --fix",
     "typecheck": "tsc --noEmit",
     "test": "vitest --run",
-    "test:ui": "vitest --ui"
+    "test:ui": "vitest --ui",
+    "bench": "vitest bench"
   },
   "dependencies": {
     "html2canvas": "^1.4.1",
