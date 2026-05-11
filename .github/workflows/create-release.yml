@@ -1,13 +1,14 @@
 on:
-  push:
-    tags:
-      - 'v*'
+  pull_request:
+    types: [closed]
+    branches: [main]
 
 name: Create Release
 
 jobs:
   create-github-release:
     name: Create GitHub Release
+    if: github.event.pull_request.merged == true && startsWith(github.head_ref, 'chore/bump-v')
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -15,6 +16,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Create Release
-        run: gh release create ${{ github.ref_name }} --generate-notes
+        run: |
+          TAG="${{ github.head_ref }}"
+          TAG="${TAG#chore/bump-}"
+          gh release create "$TAG" --generate-notes
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
