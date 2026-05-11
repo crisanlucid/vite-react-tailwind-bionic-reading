@@ -21,7 +21,7 @@ jobs:
       with:
         node-version: '22'
     - name: Install Dependencies
-      run: yarn && yarn build
+      run: npm ci && npm run build
 
 #    - name: Test
-#      run: yarn && yarn test
+#      run: npm ci && npm test

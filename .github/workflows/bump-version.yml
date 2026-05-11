@@ -34,7 +34,7 @@ jobs:
           cache: 'npm'
 
       - name: Install npm packages
-        run: yarn install --frozen-lockfile
+        run: npm ci
 
       - name: Setup Git
         run: |
