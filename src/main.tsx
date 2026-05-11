@@ -1,15 +1,19 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+import { createBrowserRouter, RouterProvider } from 'react-router';
 import App from './App';
 import './index.css';
+
+const router = createBrowserRouter(
+  [{ path: '/', element: <App /> }],
+  { basename: '/vite-react-tailwind-bionic-reading/' }
+);
 
 const container = document.getElementById('root');
 if (!container) throw new Error('no container to render to');
 
-const root = createRoot(container);
-
-root.render(
+createRoot(container).render(
   <StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </StrictMode>
 );

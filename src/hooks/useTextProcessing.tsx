@@ -6,7 +6,7 @@ export const useTextProcessing = (isUnicode: boolean) => {
   const [isDisabled, setIsDisabled] = useState(false);
   const [text, setText] = useState('');
   const [pretext, setPretext] = useState('');
-  const [listPrepText, setListPrepText] = useState([] as JSX.Element[]);
+  const [listPrepText, setListPrepText] = useState([] as React.ReactElement[]);
 
   const onChangeTextarea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setText(e?.target.value);
