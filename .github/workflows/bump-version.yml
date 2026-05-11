@@ -1,6 +1,6 @@
 # Manually triggered version bump.
-# Pushes a tag (triggers create-release.yml) and opens a PR to merge
-# the package.json version bump back into main.
+# Commits any package-lock.json changes, bumps package.json, pushes
+# directly to main, then pushes the tag (triggers create-release.yml).
 
 name: Bump version
 
@@ -21,7 +21,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      pull-requests: write
 
     steps:
       - name: Check out source
@@ -36,34 +35,22 @@ jobs:
       - name: Install npm packages
         run: npm ci
 
-      - name: Restore any files dirtied by npm ci
-        run: git restore .
-
       - name: Setup Git
         run: |
           git config user.name 'Lucian Bot'
           git config user.email 'crisan.lucid@yahoo.com'
 
+      - name: Commit package-lock.json if updated by npm ci
+        run: |
+          git add package-lock.json
+          git diff --cached --quiet package-lock.json || \
+            git commit -m "chore: update package-lock.json"
+
       - name: Bump version
         run: npm version ${{ github.event.inputs.version }}
 
+      - name: Push version bump to main
+        run: git push origin HEAD:main
+
       - name: Push tag (triggers create-release workflow)
         run: git push origin --tags
-
-      - name: Push version bump to a PR branch
-        run: |
-          VERSION=$(node -p "require('./package.json').version")
-          BRANCH="chore/bump-v${VERSION}"
-          git checkout -b $BRANCH
-          git push origin $BRANCH
-
-      - name: Open PR for version bump
-        run: |
-          VERSION=$(node -p "require('./package.json').version")
-          gh pr create \
-            --title "chore: bump version to v${VERSION}" \
-            --body "Automated version bump triggered by the Bump version workflow." \
-            --base main \
-            --head "chore/bump-v${VERSION}"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
