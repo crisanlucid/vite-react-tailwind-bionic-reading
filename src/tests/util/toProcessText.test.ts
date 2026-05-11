@@ -40,8 +40,6 @@ describe('util :: toProcessText', () => {
         ]);
     });
 
-    test('it restores whitespaces', () => {
-
-    })
+    test.todo('it restores whitespaces')
 
 });

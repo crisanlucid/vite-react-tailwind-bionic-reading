@@ -2,7 +2,7 @@
 
 import { expect, test } from 'vitest';
 
-type sumType = (a: number, b: number) => {}
+type sumType = (a: number, b: number) => number
 
 const sum: sumType = (a, b) => {
     return a + b
