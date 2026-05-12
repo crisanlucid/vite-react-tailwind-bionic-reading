@@ -9,7 +9,9 @@ A revolutionary way for guiding the eyes through text using artificial fixation 
 
 vite-react-tailwind-bionic-reading project 
 
-![Bionic ReadingTool project image](./src/assets/bionic_reader_v2.PNG)
+| Light mode | Dark mode |
+|:---:|:---:|
+| ![Light mode](./src/assets/bionic_reader_light.png) | ![Dark mode](./src/assets/bionic_reader_dark.png) |
 ## What is Next? 🌟
 
 | Name                                                                              | Short Description                                          | Status       |
