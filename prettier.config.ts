@@ -1,5 +1,6 @@
-/* eslint-env node */
-module.exports = {
+import type { Config } from 'prettier';
+
+const config: Config = {
   endOfLine: 'lf',
   jsxSingleQuote: true,
   printWidth: 100,
@@ -11,3 +12,5 @@ module.exports = {
   trailingComma: 'es5',
   useTabs: false,
 };
+
+export default config;
