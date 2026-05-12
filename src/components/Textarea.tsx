@@ -24,7 +24,6 @@ export const Textarea: FC<TextareaProps> = ({ onChange }) => (
     mb-4
     focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'
     name='text'
-    id='controlTextarea'
     cols={30}
     rows={10}
     aria-label='empty textarea'

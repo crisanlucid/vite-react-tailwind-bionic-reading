@@ -10,7 +10,6 @@ export const ReadOutput = React.forwardRef<HTMLParagraphElement, ReadOutputProps
     <p
       ref={ref}
       className='whitespace-pre-wrap break-all basis-11/12 shadow mb-4 px-3 py-1.5'
-      id='divToPrint'
     >
       {pretext}
       <span className='t-text'>
