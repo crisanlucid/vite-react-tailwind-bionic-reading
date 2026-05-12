@@ -7,27 +7,19 @@ interface TextareaProps {
 
 export const Textarea: FC<TextareaProps> = ({ onChange }) => (
   <textarea
-    className='form-control
-    block
-    w-full
-    px-3
-    py-1.5
-    text-base
-    font-normal
-    text-gray-700
-    bg-white bg-clip-padding
-    border border-solid border-gray-300
-    rounded-lg shadow
-    transition
-    ease-in-out
-    m-0
-    mb-4
-    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'
+    className='block w-full px-3 py-2 mb-4
+      text-base font-normal text-slate-900 dark:text-slate-100
+      bg-slate-50 dark:bg-slate-950
+      border border-slate-200 dark:border-slate-700
+      rounded-lg
+      placeholder-slate-400
+      transition-colors duration-150
+      focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent'
     name='text'
     cols={30}
     rows={10}
     aria-label='empty textarea'
-    placeholder='Empty'
+    placeholder='Paste your text here…'
     onChange={onChange}
   />
 );
