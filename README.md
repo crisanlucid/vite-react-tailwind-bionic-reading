@@ -1,5 +1,10 @@
 
-# :notebook: Bionic ReadingTool 
+# :notebook: Bionic ReadingTool
+
+[![Node.js CI](https://github.com/crisanlucid/vite-react-tailwind-bionic-reading/actions/workflows/nodejs.yml/badge.svg)](https://github.com/crisanlucid/vite-react-tailwind-bionic-reading/actions/workflows/nodejs.yml)
+[![CodeQL](https://github.com/crisanlucid/vite-react-tailwind-bionic-reading/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/crisanlucid/vite-react-tailwind-bionic-reading/actions/workflows/codeql-analysis.yml)
+[![Deploy](https://github.com/crisanlucid/vite-react-tailwind-bionic-reading/actions/workflows/deploy.yml/badge.svg)](https://github.com/crisanlucid/vite-react-tailwind-bionic-reading/actions/workflows/deploy.yml)
+
 A revolutionary way for guiding the eyes through text using artificial fixation spots to make reading easier. As a result, the reader's attention is drawn solely to the highlighted starting letters, leaving the word to be completed by the brain center. Bionic Reading attempts to foster greater in-depth reading and understanding of textual content in a digital environment dominated by shallow kinds of reading.
 
 vite-react-tailwind-bionic-reading project 
@@ -9,8 +14,9 @@ vite-react-tailwind-bionic-reading project
 
 | Name                                                                              | Short Description                                          | Status       |
 | --------------------------------------------------------------------------------- | ---------------------------------------------------------- | ---------- |
-| Save as PDF                                   | Create a button and download as PDF the text |:heavy_check_mark:
+| Save as PDF                                   | Create a button and download as PDF the text | :heavy_check_mark:
 | Unicode Support                                   | Insert unicode characters | :heavy_check_mark:
+| Fix PDF export background                         | Replace html2canvas with html-to-image for Tailwind v4 compatibility — eliminates gray background in exported PDF | :heavy_check_mark:
 | Show characters                                   | Display Characters after textarea | backlog
 | Increase fonts                                   | Create functionality to increase/descrease fonts size | backlog
 
