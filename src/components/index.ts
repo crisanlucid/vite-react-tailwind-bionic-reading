@@ -1,3 +1,4 @@
+export { AdvancedToggle } from './AdvancedToggle';
 export { Button } from './Button';
 export { Checkbox } from './Checkbox';
 export { ImportButton } from './ImportButton';

@@ -3,7 +3,15 @@ import React, { FC, useState, useRef } from 'react';
 import { useTextProcessing } from '../hooks/useTextProcessing';
 import { useTheme } from '../hooks/useTheme';
 import { useFileImport } from '../hooks/useFileImport';
-import { Button, Checkbox, ImportButton, ReadOutput, Textarea, ThemeToggle } from '../components';
+import {
+  AdvancedToggle,
+  Button,
+  Checkbox,
+  ImportButton,
+  ReadOutput,
+  Textarea,
+  ThemeToggle,
+} from '../components';
 import { calcPdfImageLayout } from '../util/pdfLayout';
 
 import { toPng } from 'html-to-image';
@@ -13,6 +21,7 @@ const FILE_PDF_NAME = 'download.pdf';
 
 export const BionicReaderPage: FC = () => {
   const [isUnicode, setIsUnicode] = useState(false);
+  const [isAdvanced, setIsAdvanced] = useState(false);
   const { listPrepText, isDisabled, onClickButton, onChangeTextarea, pretext, text, setText } =
     useTextProcessing(isUnicode);
   const outputRef = useRef<HTMLParagraphElement>(null);
@@ -54,7 +63,10 @@ export const BionicReaderPage: FC = () => {
               Speed-read with artificial fixation points
             </p>
           </div>
-          <ThemeToggle theme={theme} onClick={toggleTheme} />
+          <div className='flex items-center gap-2'>
+            <AdvancedToggle active={isAdvanced} onClick={() => setIsAdvanced((v) => !v)} />
+            <ThemeToggle theme={theme} onClick={toggleTheme} />
+          </div>
         </div>
 
         <hr className='my-4 border-slate-200 dark:border-slate-700' />
@@ -69,18 +81,25 @@ export const BionicReaderPage: FC = () => {
               <Button variant='primary' disabled={isDisabled} onClick={onClickButton} loading={isDisabled}>
                 Convert
               </Button>
-              <ImportButton
-                inputRef={fileInputRef}
-                onChange={handleFileChange}
-                onClick={openPicker}
-                loading={isImporting}
-              />
+              {isAdvanced && (
+                <ImportButton
+                  inputRef={fileInputRef}
+                  onChange={handleFileChange}
+                  onClick={openPicker}
+                  loading={isImporting}
+                />
+              )}
               <Checkbox
                 checked={isUnicode}
                 onChange={onConvertToUnicodeChange}
                 label='Unicode mode'
               />
             </div>
+            {isAdvanced && (
+              <p className='text-xs text-slate-400 dark:text-slate-500'>
+                * Supported formats: TXT, DOCX, PDF
+              </p>
+            )}
             {importError && (
               <p className='text-xs text-red-500 dark:text-red-400'>{importError}</p>
             )}
