@@ -1,18 +1,21 @@
 import React, { FC, useState, useRef } from 'react';
 
 import { useTextProcessing } from '../hooks/useTextProcessing';
+import { Button, Checkbox, ReadOutput, Textarea } from '../components';
 
 import { toPng } from 'html-to-image';
 import { jsPDF } from 'jspdf';
 
 const FILE_PDF_NAME = 'download.pdf';
+
 export const BionicReaderPage: FC = () => {
   const [isUnicode, setIsUnicode] = useState(false);
   const { listPrepText, isDisabled, onClickButton, onChangeTextarea, pretext } =
     useTextProcessing(isUnicode);
-  const inputRef = useRef(null);
+  const inputRef = useRef<HTMLParagraphElement>(null);
+
   const printDocument = () => {
-    toPng(inputRef.current as unknown as HTMLElement, { backgroundColor: '#ffffff' })
+    toPng(inputRef.current as HTMLElement, { backgroundColor: '#ffffff' })
       .then((imgData) => {
         const pdf = new jsPDF();
         const width = pdf.internal.pageSize.getWidth();
@@ -33,67 +36,27 @@ export const BionicReaderPage: FC = () => {
         <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
           <section className='text-left py-4'>
             <h3 className='text-lg font-bold pb-4'>Insert Text:</h3>
-            <textarea
-              className='form-control
-              block
-              w-full
-              px-3
-              py-1.5
-              text-base
-              font-normal
-              text-gray-700
-              bg-white bg-clip-padding
-              border border-solid border-gray-300
-              rounded-lg shadow
-              transition
-              ease-in-out
-              m-0
-              mb-4
-              focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'
-              name='text'
-              id='controlTextarea'
-              cols={30}
-              rows={10}
-              aria-label='empty textarea'
-              placeholder='Empty'
-              onChange={onChangeTextarea}
-            ></textarea>
-            <button
-              className='hover:bg-blue-700 bg-blue-600 text-gray-100 py-2 px-4 rounded'
-              disabled={isDisabled}
-              onClick={onClickButton}
-            >
+            <Textarea onChange={onChangeTextarea} />
+            <Button variant='primary' disabled={isDisabled} onClick={onClickButton}>
               Convert
-            </button>
-            <div className='ml-4 inline-block'>
-              <input type='checkbox' onChange={onConvertToUnicodeChange} />
-              <span className='font-normal'> Convert with Unicode</span>
-            </div>
+            </Button>
+            <Checkbox
+              checked={isUnicode}
+              onChange={onConvertToUnicodeChange}
+              label='Convert with Unicode'
+            />
           </section>
           <section className='text-left py-4 overflow-hidden flex flex-col'>
-            <h3 className='text-lg font-bold pb-4 '>Read Section:</h3>
-
-            <p
-              className='whitespace-pre-wrap break-all basis-11/12 shadow mb-4 px-3
-              py-1.5'
-              id='divToPrint'
-              ref={inputRef}
-            >
-              {pretext}
-              <span className='t-text'>
-                {listPrepText.map((text) => (
-                  <>{text} </>
-                ))}
-              </span>
-            </p>
-
-            <button
-              className='hover:bg-green-700 bg-green-600 text-gray-100 py-2 px-4 rounded self-start '
+            <h3 className='text-lg font-bold pb-4'>Read Section:</h3>
+            <ReadOutput ref={inputRef} pretext={pretext} listPrepText={listPrepText} />
+            <Button
+              variant='success'
               disabled={isDisabled}
               onClick={printDocument}
+              className='self-start'
             >
               Download
-            </button>
+            </Button>
           </section>
         </div>
       </div>
