@@ -76,33 +76,33 @@ export const BionicReaderPage: FC = () => {
             <h2 className='text-xs font-semibold uppercase tracking-widest text-slate-400 dark:text-slate-500'>
               Input
             </h2>
-            <Textarea onChange={onChangeTextarea} value={text} />
-            <div className='flex items-center gap-3 flex-wrap'>
-              <Button variant='primary' disabled={isDisabled} onClick={onClickButton} loading={isDisabled}>
-                Convert
-              </Button>
-              {isAdvanced && (
+            {isAdvanced && (
+              <div className='flex items-center gap-3'>
                 <ImportButton
                   inputRef={fileInputRef}
                   onChange={handleFileChange}
                   onClick={openPicker}
                   loading={isImporting}
                 />
-              )}
+                <span className='text-xs text-slate-400 dark:text-slate-500'>
+                  * Supported formats: TXT, DOCX, PDF
+                </span>
+              </div>
+            )}
+            {importError && (
+              <p className='text-xs text-red-500 dark:text-red-400'>{importError}</p>
+            )}
+            <Textarea onChange={onChangeTextarea} value={text} className='flex-1 min-h-[220px]' />
+            <div className='flex items-center gap-3 flex-wrap'>
+              <Button variant='primary' disabled={isDisabled} onClick={onClickButton} loading={isDisabled}>
+                Convert
+              </Button>
               <Checkbox
                 checked={isUnicode}
                 onChange={onConvertToUnicodeChange}
                 label='Unicode mode'
               />
             </div>
-            {isAdvanced && (
-              <p className='text-xs text-slate-400 dark:text-slate-500'>
-                * Supported formats: TXT, DOCX, PDF
-              </p>
-            )}
-            {importError && (
-              <p className='text-xs text-red-500 dark:text-red-400'>{importError}</p>
-            )}
           </section>
 
           <section className='flex flex-col gap-3'>
@@ -113,7 +113,7 @@ export const BionicReaderPage: FC = () => {
               ref={outputRef}
               pretext={pretext}
               listPrepText={listPrepText}
-              className='flex-1'
+              className='flex-1 min-h-[220px]'
             />
             <Button
               variant='success'
