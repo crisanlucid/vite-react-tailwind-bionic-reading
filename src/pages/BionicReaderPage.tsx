@@ -15,11 +15,13 @@ export const BionicReaderPage: FC = () => {
   const inputRef = useRef<HTMLParagraphElement>(null);
 
   const printDocument = () => {
-    toPng(inputRef.current as HTMLElement, { backgroundColor: '#ffffff', pixelRatio: 3 })
+    const el = inputRef.current as HTMLElement;
+    toPng(el, { backgroundColor: '#ffffff', pixelRatio: 3 })
       .then((imgData) => {
         const pdf = new jsPDF();
-        const width = pdf.internal.pageSize.getWidth();
-        pdf.addImage(imgData, 'PNG', 5, 0, width - 10, 0);
+        const pdfWidth = pdf.internal.pageSize.getWidth() - 10;
+        const pdfHeight = (el.offsetHeight / el.offsetWidth) * pdfWidth;
+        pdf.addImage(imgData, 'PNG', 5, 0, pdfWidth, pdfHeight);
         pdf.save(FILE_PDF_NAME);
       })
       .catch((e) => console.error(e));
