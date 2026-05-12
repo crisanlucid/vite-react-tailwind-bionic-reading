@@ -5,9 +5,9 @@
 [![CodeQL](https://github.com/crisanlucid/vite-react-tailwind-bionic-reading/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/crisanlucid/vite-react-tailwind-bionic-reading/actions/workflows/codeql-analysis.yml)
 [![Deploy](https://github.com/crisanlucid/vite-react-tailwind-bionic-reading/actions/workflows/deploy.yml/badge.svg)](https://github.com/crisanlucid/vite-react-tailwind-bionic-reading/actions/workflows/deploy.yml)
 
-A revolutionary way for guiding the eyes through text using artificial fixation spots to make reading easier. As a result, the reader's attention is drawn solely to the highlighted starting letters, leaving the word to be completed by the brain center. Bionic Reading attempts to foster greater in-depth reading and understanding of textual content in a digital environment dominated by shallow kinds of reading.
+Open-source **React**, **Vite**, **Tailwind CSS** & **TypeScript** app that converts text with artificial fixation points for faster bionic reading. The brain completes each word from its bold starting letters — increasing reading speed by up to 30%. Supports Unicode mode, PDF export, and light/dark theme.
 
-vite-react-tailwind-bionic-reading project 
+**[▶ Live Demo](https://crisanlucid.github.io/vite-react-tailwind-bionic-reading/)**
 
 | Light mode | Dark mode |
 |:---:|:---:|
@@ -21,6 +21,7 @@ vite-react-tailwind-bionic-reading project
 | Fix PDF export background                         | Replace html2canvas with html-to-image for Tailwind v4 compatibility — eliminates gray background in exported PDF | :heavy_check_mark:
 | Sharp PDF export                                  | Capture at 3× pixel ratio and render at physical size via `calcPdfImageLayout` (px→mm) — eliminates blurry text in exported PDF | :heavy_check_mark:
 | Reusable UI components                            | Extract Button, Textarea, Checkbox, ReadOutput into `src/components/` — accessible, typed, and independently testable | :heavy_check_mark:
+| Dark mode                                         | Light/dark theme toggle with `localStorage` persistence | :heavy_check_mark:
 | Show characters                                   | Display Characters after textarea | backlog
 | Increase fonts                                   | Create functionality to increase/descrease fonts size | backlog
 
@@ -40,9 +41,6 @@ PDF export uses [`html-to-image`](https://github.com/bubkoo/html-to-image) + [`j
 ## Contribution
 
 Pull requests are welcome :)
-
-## Preview
-Frontend live demo ([click](https://crisanlucid.github.io/vite-react-tailwind-bionic-reading/))
 
 ---
 
