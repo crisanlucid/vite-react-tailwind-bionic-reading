@@ -2,7 +2,16 @@ import React, { FC, useState, useRef } from 'react';
 
 import { useTextProcessing } from '../hooks/useTextProcessing';
 import { useTheme } from '../hooks/useTheme';
-import { Button, Checkbox, ReadOutput, Textarea, ThemeToggle } from '../components';
+import { useFileImport } from '../hooks/useFileImport';
+import {
+  AdvancedToggle,
+  Button,
+  Checkbox,
+  ImportButton,
+  ReadOutput,
+  Textarea,
+  ThemeToggle,
+} from '../components';
 import { calcPdfImageLayout } from '../util/pdfLayout';
 
 import { toPng } from 'html-to-image';
@@ -12,13 +21,17 @@ const FILE_PDF_NAME = 'download.pdf';
 
 export const BionicReaderPage: FC = () => {
   const [isUnicode, setIsUnicode] = useState(false);
-  const { listPrepText, isDisabled, onClickButton, onChangeTextarea, pretext } =
+  const [isAdvanced, setIsAdvanced] = useState(false);
+  const { listPrepText, isDisabled, onClickButton, onChangeTextarea, pretext, text, setText } =
     useTextProcessing(isUnicode);
-  const inputRef = useRef<HTMLParagraphElement>(null);
+  const outputRef = useRef<HTMLParagraphElement>(null);
   const { theme, toggleTheme } = useTheme();
 
+  const { inputRef: fileInputRef, isImporting, importError, openPicker, handleFileChange } =
+    useFileImport(setText);
+
   const printDocument = () => {
-    const el = inputRef.current as HTMLElement;
+    const el = outputRef.current as HTMLElement;
     const backgroundColor = theme === 'dark' ? '#1e293b' : '#f8fafc';
     toPng(el, { backgroundColor, pixelRatio: 3 })
       .then((imgData) => {
@@ -50,18 +63,37 @@ export const BionicReaderPage: FC = () => {
               Speed-read with artificial fixation points
             </p>
           </div>
-          <ThemeToggle theme={theme} onClick={toggleTheme} />
+          <div className='flex items-center gap-2'>
+            <AdvancedToggle active={isAdvanced} onClick={() => setIsAdvanced((v) => !v)} />
+            <ThemeToggle theme={theme} onClick={toggleTheme} />
+          </div>
         </div>
 
         <hr className='my-4 border-slate-200 dark:border-slate-700' />
 
-        <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+        <div className='grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch'>
           <section className='flex flex-col gap-3'>
             <h2 className='text-xs font-semibold uppercase tracking-widest text-slate-400 dark:text-slate-500'>
               Input
             </h2>
-            <Textarea onChange={onChangeTextarea} />
-            <div className='flex items-center gap-4'>
+            {isAdvanced && (
+              <div className='flex items-center gap-3'>
+                <ImportButton
+                  inputRef={fileInputRef}
+                  onChange={handleFileChange}
+                  onClick={openPicker}
+                  loading={isImporting}
+                />
+                <span className='text-xs text-slate-400 dark:text-slate-500'>
+                  * Supported formats: TXT, DOCX, PDF
+                </span>
+              </div>
+            )}
+            {importError && (
+              <p className='text-xs text-red-500 dark:text-red-400'>{importError}</p>
+            )}
+            <Textarea onChange={onChangeTextarea} value={text} className='flex-1 min-h-[220px]' />
+            <div className='flex items-center gap-3 flex-wrap'>
               <Button variant='primary' disabled={isDisabled} onClick={onClickButton} loading={isDisabled}>
                 Convert
               </Button>
@@ -73,11 +105,16 @@ export const BionicReaderPage: FC = () => {
             </div>
           </section>
 
-          <section className='flex flex-col gap-3 overflow-hidden'>
+          <section className='flex flex-col gap-3'>
             <h2 className='text-xs font-semibold uppercase tracking-widest text-slate-400 dark:text-slate-500'>
               Output
             </h2>
-            <ReadOutput ref={inputRef} pretext={pretext} listPrepText={listPrepText} />
+            <ReadOutput
+              ref={outputRef}
+              pretext={pretext}
+              listPrepText={listPrepText}
+              className='flex-1 min-h-[220px]'
+            />
             <Button
               variant='success'
               disabled={isDisabled}
