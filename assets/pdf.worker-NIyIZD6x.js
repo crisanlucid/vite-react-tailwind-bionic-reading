@@ -1,0 +1,1 @@
+var e=`/vite-react-tailwind-bionic-reading/assets/pdf.worker-B1D2UnXD.mjs`;export{e as default};
