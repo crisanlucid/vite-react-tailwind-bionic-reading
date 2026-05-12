@@ -18,10 +18,12 @@ export const BionicReaderPage: FC = () => {
     const el = inputRef.current as HTMLElement;
     toPng(el, { backgroundColor: '#ffffff', pixelRatio: 3 })
       .then((imgData) => {
+        const MM_PER_PX = 25.4 / 96;
+        const elWidthMm = el.offsetWidth * MM_PER_PX;
+        const elHeightMm = el.offsetHeight * MM_PER_PX;
         const pdf = new jsPDF();
-        const pdfWidth = pdf.internal.pageSize.getWidth() - 10;
-        const pdfHeight = (el.offsetHeight / el.offsetWidth) * pdfWidth;
-        pdf.addImage(imgData, 'PNG', 5, 0, pdfWidth, pdfHeight);
+        const x = (pdf.internal.pageSize.getWidth() - elWidthMm) / 2;
+        pdf.addImage(imgData, 'PNG', x, 5, elWidthMm, elHeightMm);
         pdf.save(FILE_PDF_NAME);
       })
       .catch((e) => console.error(e));
