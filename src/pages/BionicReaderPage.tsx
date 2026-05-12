@@ -71,7 +71,7 @@ export const BionicReaderPage: FC = () => {
 
         <hr className='my-4 border-slate-200 dark:border-slate-700' />
 
-        <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+        <div className='grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch'>
           <section className='flex flex-col gap-3'>
             <h2 className='text-xs font-semibold uppercase tracking-widest text-slate-400 dark:text-slate-500'>
               Input
@@ -105,11 +105,16 @@ export const BionicReaderPage: FC = () => {
             )}
           </section>
 
-          <section className='flex flex-col gap-3 overflow-hidden'>
+          <section className='flex flex-col gap-3'>
             <h2 className='text-xs font-semibold uppercase tracking-widest text-slate-400 dark:text-slate-500'>
               Output
             </h2>
-            <ReadOutput ref={outputRef} pretext={pretext} listPrepText={listPrepText} />
+            <ReadOutput
+              ref={outputRef}
+              pretext={pretext}
+              listPrepText={listPrepText}
+              className='flex-1'
+            />
             <Button
               variant='success'
               disabled={isDisabled}
