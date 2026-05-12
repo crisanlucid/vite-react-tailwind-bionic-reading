@@ -3,9 +3,10 @@ import { FC } from 'react';
 
 interface TextareaProps {
   onChange: ChangeEventHandler<HTMLTextAreaElement>;
+  value?: string;
 }
 
-export const Textarea: FC<TextareaProps> = ({ onChange }) => (
+export const Textarea: FC<TextareaProps> = ({ onChange, value }) => (
   <textarea
     className='block w-full px-3 py-2 mb-4
       text-base font-normal text-slate-900 dark:text-slate-100
@@ -21,5 +22,6 @@ export const Textarea: FC<TextareaProps> = ({ onChange }) => (
     aria-label='empty textarea'
     placeholder='Paste your text here…'
     onChange={onChange}
+    value={value}
   />
 );

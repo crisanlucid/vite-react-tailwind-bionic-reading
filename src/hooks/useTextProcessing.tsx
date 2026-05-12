@@ -72,6 +72,8 @@ export const useTextProcessing = (isUnicode: boolean) => {
     listPrepText,
     pretext,
     isDisabled,
+    text,
+    setText,
     onClickButton,
     processData,
     onChangeTextarea,
