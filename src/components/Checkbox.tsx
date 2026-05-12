@@ -7,8 +7,8 @@ interface CheckboxProps {
 }
 
 export const Checkbox: FC<CheckboxProps> = ({ checked, onChange, label }) => (
-  <div className='ml-4 inline-block'>
+  <label className='ml-4 inline-flex items-center gap-1 font-normal cursor-pointer'>
     <input type='checkbox' checked={checked} onChange={onChange} />
-    <span className='font-normal'> {label}</span>
-  </div>
+    {label}
+  </label>
 );
