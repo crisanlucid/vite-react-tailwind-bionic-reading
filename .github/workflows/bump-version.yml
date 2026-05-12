@@ -1,6 +1,6 @@
 # Manually triggered version bump.
-# Bumps package.json + package-lock.json, opens a PR to merge into main,
-# then pushes the tag (triggers create-release.yml).
+# Bumps package.json + package-lock.json, pushes the tag, and opens a PR.
+# Merging the PR triggers create-release.yml to create the GitHub Release.
 
 name: Bump version
 
@@ -52,5 +52,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Push tag (triggers create-release workflow)
+      - name: Push tag
         run: git push origin --tags

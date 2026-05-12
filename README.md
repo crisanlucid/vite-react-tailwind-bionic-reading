@@ -17,12 +17,8 @@ vite-react-tailwind-bionic-reading project
 
 ### How to Run
 
-```
-npm i && npm dev
-```
-or 
-```
-yarn && yarn dev
+```bash
+npm install && npm run dev
 ```
 
 ## PDF functionality
@@ -54,37 +50,31 @@ git push origin feature/my-feature
 
 ### 2. Open a Pull Request → merge into `main`
 
-- Open a PR on GitHub targeting `main`
-- Merging triggers automatically:
-  - **Node.js CI** — installs deps + builds
-  - **Build and Deploy** — deploys to GitHub Pages
+Opening a PR triggers:
+- **Node.js CI** — installs deps, builds, runs tests
+- **CodeQL** — security scan
+
+Merging into `main` additionally triggers:
+- **Build and Deploy** — deploys to GitHub Pages (only when source files change)
 
 ### 3. Bump the version
 
 Go to **Actions → Bump version → Run workflow** and choose:
-- `patch` → bug fixes / small improvements (0.4.0 → 0.4.1)
-- `minor` → new features, backwards compatible (0.4.0 → 0.5.0)
-- `major` → breaking changes (0.4.0 → 1.0.0)
+- `patch` → bug fixes / small improvements (0.5.0 → 0.5.1)
+- `minor` → new features, backwards compatible (0.5.0 → 0.6.0)
+- `major` → breaking changes (0.5.0 → 1.0.0)
 
 This workflow will:
-- Bump `package.json` version
-- Create and push a git tag (e.g. `v0.4.1`)
-- Open a PR to merge the version bump back into `main`
+- Bump `package.json` + `package-lock.json` version
+- Create a git tag (e.g. `v0.6.0`) and push it
+- Open a PR named `chore: bump version to vX.X.X`
 
 ### 4. Merge the version bump PR
 
-A PR named `chore: bump version to vX.X.X` will be opened automatically — merge it into `main`.
-
-### 5. Trigger the release manually
-
-Because `main` is protected, the tag push won't auto-trigger the release workflow.
-
-Go to **Actions → Create Release → Run workflow**.
-
-This will:
-- Build the project
-- Publish to npm
-- Create a GitHub Release with auto-generated notes
+Merge the `chore: bump version to vX.X.X` PR into `main`. This automatically:
+- Runs CI (install, build, test)
+- Deploys to GitHub Pages
+- **Creates a GitHub Release** with auto-generated notes
 
 ---
 
