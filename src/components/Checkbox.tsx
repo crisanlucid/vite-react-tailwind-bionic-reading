@@ -1,8 +1,9 @@
+import type { ChangeEventHandler } from 'react';
 import { FC } from 'react';
 
 interface CheckboxProps {
   checked: boolean;
-  onChange: React.ChangeEventHandler<HTMLInputElement>;
+  onChange: ChangeEventHandler<HTMLInputElement>;
   label: string;
 }
 

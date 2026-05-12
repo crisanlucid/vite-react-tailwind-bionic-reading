@@ -15,9 +15,15 @@ interface ButtonProps {
   className?: string;
 }
 
-export const Button: FC<ButtonProps> = ({ onClick, disabled, children, variant, className = '' }) => (
+export const Button: FC<ButtonProps> = ({
+  onClick,
+  disabled,
+  children,
+  variant,
+  className = '',
+}) => (
   <button
-    className={`${variantClasses[variant]} text-gray-100 py-2 px-4 rounded ${className}`}
+    className={`${variantClasses[variant]} text-gray-100 py-2 px-4 rounded disabled:opacity-50 disabled:cursor-not-allowed ${className}`}
     disabled={disabled}
     onClick={onClick}
   >

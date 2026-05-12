@@ -1,7 +1,8 @@
+import type { ChangeEventHandler } from 'react';
 import { FC } from 'react';
 
 interface TextareaProps {
-  onChange: React.ChangeEventHandler<HTMLTextAreaElement>;
+  onChange: ChangeEventHandler<HTMLTextAreaElement>;
 }
 
 export const Textarea: FC<TextareaProps> = ({ onChange }) => (
