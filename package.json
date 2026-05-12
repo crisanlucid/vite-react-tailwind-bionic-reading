@@ -21,7 +21,7 @@
     "bench": "vitest bench"
   },
   "dependencies": {
-    "html2canvas": "^1.4.1",
+    "html-to-image": "^1.11.13",
     "jspdf": "^4.2.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
