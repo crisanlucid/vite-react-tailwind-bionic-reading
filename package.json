@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "html2canvas": "^1.4.1",
-    "jspdf": "^2.5.1",
+    "jspdf": "^2.5.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router": "^7.0.0"
@@ -58,7 +58,7 @@
     "stylelint-config-standard": "^40.0.0",
     "tailwindcss": "^4.3.0",
     "typescript": "^6.0.0",
-    "typescript-eslint": "^8.0.0",
+    "typescript-eslint": "^8.59.3",
     "vite": "^8.0.0",
     "vitest": "^4.1.0"
   }
