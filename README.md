@@ -17,6 +17,8 @@ vite-react-tailwind-bionic-reading project
 | Save as PDF                                   | Create a button and download as PDF the text | :heavy_check_mark:
 | Unicode Support                                   | Insert unicode characters | :heavy_check_mark:
 | Fix PDF export background                         | Replace html2canvas with html-to-image for Tailwind v4 compatibility — eliminates gray background in exported PDF | :heavy_check_mark:
+| Sharp PDF export                                  | Capture at 3× pixel ratio and render at physical size via `calcPdfImageLayout` (px→mm) — eliminates blurry text in exported PDF | :heavy_check_mark:
+| Reusable UI components                            | Extract Button, Textarea, Checkbox, ReadOutput into `src/components/` — accessible, typed, and independently testable | :heavy_check_mark:
 | Show characters                                   | Display Characters after textarea | backlog
 | Increase fonts                                   | Create functionality to increase/descrease fonts size | backlog
 
@@ -29,6 +31,8 @@ npm install && npm run dev
 
 ## PDF functionality
 ![Save text as PDF file](./src/assets/download_functionality.PNG)
+
+PDF export uses [`html-to-image`](https://github.com/bubkoo/html-to-image) + [`jsPDF`](https://github.com/parallax/jsPDF). The Read Section is captured as a PNG at **3× pixel ratio** for sharp text, then placed on the page at its true physical size using `src/util/pdfLayout.ts` (`calcPdfImageLayout`) which converts CSS pixels to millimetres (1 px = 25.4 / 96 mm) and centres the image horizontally.
 
 
 ## Contribution
