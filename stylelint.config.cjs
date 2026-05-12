@@ -10,20 +10,20 @@ module.exports = {
     'at-rule-no-unknown': [
       true,
       {
-        ignoreAtRules: ['tailwind', 'apply', 'screen', 'variants', 'responsive'],
+        ignoreAtRules: ['plugin', 'theme', 'source', 'utility', 'apply'],
       },
     ],
+    'import-notation': 'string',
     'no-duplicate-selectors': null,
     'no-empty-source': null,
     'rule-empty-line-before': null,
     'comment-empty-line-before': null,
     'selector-pseudo-element-no-unknown': null,
-    'declaration-block-trailing-semicolon': null,
     'no-descending-specificity': null,
-    'string-no-newline': null,
+    'font-family-name-quotes': null,
     // Limit the number of universal selectors in a selector,
     // to avoid very slow selectors
     'selector-max-universal': 1,
-    'selector-class-pattern': '^[a-z][a-zA-Z0-9]+$',
+    'selector-class-pattern': '^[a-z][a-z0-9-]*$',
   },
 };

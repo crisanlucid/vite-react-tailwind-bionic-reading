@@ -1,4 +1,5 @@
 @import "tailwindcss";
+
 @plugin "@tailwindcss/forms";
 
 @theme {
@@ -26,8 +27,8 @@ code {
 }
 
 .bio-letter {
-  color: black;
   font-weight: 600;
+  color: black;
 }
 
 .t-text {
