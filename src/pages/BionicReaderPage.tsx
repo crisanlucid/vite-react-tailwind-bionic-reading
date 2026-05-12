@@ -2,7 +2,7 @@ import React, { FC, useState, useRef } from 'react';
 
 import { useTextProcessing } from '../hooks/useTextProcessing';
 
-import { toJpeg } from 'html-to-image';
+import { toPng } from 'html-to-image';
 import { jsPDF } from 'jspdf';
 
 const FILE_PDF_NAME = 'download.pdf';
@@ -12,11 +12,11 @@ export const BionicReaderPage: FC = () => {
     useTextProcessing(isUnicode);
   const inputRef = useRef(null);
   const printDocument = () => {
-    toJpeg(inputRef.current as unknown as HTMLElement, { backgroundColor: '#ffffff', quality: 0.95 })
+    toPng(inputRef.current as unknown as HTMLElement, { backgroundColor: '#ffffff' })
       .then((imgData) => {
         const pdf = new jsPDF();
         const width = pdf.internal.pageSize.getWidth();
-        pdf.addImage(imgData, 'JPEG', 5, 0, width - 10, 0);
+        pdf.addImage(imgData, 'PNG', 5, 0, width - 10, 0);
         pdf.save(FILE_PDF_NAME);
       })
       .catch((e) => console.error(e));
