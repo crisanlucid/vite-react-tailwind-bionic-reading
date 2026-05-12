@@ -1,7 +1,8 @@
 import React, { FC, useState, useRef } from 'react';
 
 import { useTextProcessing } from '../hooks/useTextProcessing';
-import { Button, Checkbox, ReadOutput, Textarea } from '../components';
+import { useTheme } from '../hooks/useTheme';
+import { Button, Checkbox, ReadOutput, Textarea, ThemeToggle } from '../components';
 import { calcPdfImageLayout } from '../util/pdfLayout';
 
 import { toPng } from 'html-to-image';
@@ -14,10 +15,12 @@ export const BionicReaderPage: FC = () => {
   const { listPrepText, isDisabled, onClickButton, onChangeTextarea, pretext } =
     useTextProcessing(isUnicode);
   const inputRef = useRef<HTMLParagraphElement>(null);
+  const { theme, toggleTheme } = useTheme();
 
   const printDocument = () => {
     const el = inputRef.current as HTMLElement;
-    toPng(el, { backgroundColor: '#ffffff', pixelRatio: 3 })
+    const backgroundColor = theme === 'dark' ? '#1e293b' : '#f8fafc';
+    toPng(el, { backgroundColor, pixelRatio: 3 })
       .then((imgData) => {
         const pdf = new jsPDF();
         const { x, y, width, height } = calcPdfImageLayout(
@@ -36,24 +39,44 @@ export const BionicReaderPage: FC = () => {
   };
 
   return (
-    <div className='px-3 py-20 w-screen h-screen bg-gray-500'>
-      <div className='mx-auto max-w-xs h-auto min-h-fit sm:max-w-lg md:max-w-4xl rounded-lg shadow bg-white p-4'>
-        <h2 className='text-2xl font-bold my-2 text-left'>Bionic Reading</h2>
-        <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-          <section className='text-left py-4'>
-            <h3 className='text-lg font-bold pb-4'>Insert Text:</h3>
+    <div className='min-h-screen px-4 py-12 bg-slate-100 dark:bg-slate-950 transition-colors duration-200'>
+      <div className='mx-auto max-w-xs sm:max-w-lg md:max-w-4xl bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8'>
+        <div className='flex items-start justify-between mb-1'>
+          <div>
+            <h1 className='text-2xl font-bold text-slate-900 dark:text-slate-100'>
+              Bionic Reading
+            </h1>
+            <p className='text-sm text-slate-500 dark:text-slate-400 mt-0.5'>
+              Speed-read with artificial fixation points
+            </p>
+          </div>
+          <ThemeToggle theme={theme} onClick={toggleTheme} />
+        </div>
+
+        <hr className='my-4 border-slate-200 dark:border-slate-700' />
+
+        <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+          <section className='flex flex-col gap-3'>
+            <h2 className='text-xs font-semibold uppercase tracking-widest text-slate-400 dark:text-slate-500'>
+              Input
+            </h2>
             <Textarea onChange={onChangeTextarea} />
-            <Button variant='primary' disabled={isDisabled} onClick={onClickButton}>
-              Convert
-            </Button>
-            <Checkbox
-              checked={isUnicode}
-              onChange={onConvertToUnicodeChange}
-              label='Convert with Unicode'
-            />
+            <div className='flex items-center gap-4'>
+              <Button variant='primary' disabled={isDisabled} onClick={onClickButton} loading={isDisabled}>
+                Convert
+              </Button>
+              <Checkbox
+                checked={isUnicode}
+                onChange={onConvertToUnicodeChange}
+                label='Unicode mode'
+              />
+            </div>
           </section>
-          <section className='text-left py-4 overflow-hidden flex flex-col'>
-            <h3 className='text-lg font-bold pb-4'>Read Section:</h3>
+
+          <section className='flex flex-col gap-3 overflow-hidden'>
+            <h2 className='text-xs font-semibold uppercase tracking-widest text-slate-400 dark:text-slate-500'>
+              Output
+            </h2>
             <ReadOutput ref={inputRef} pretext={pretext} listPrepText={listPrepText} />
             <Button
               variant='success'
@@ -61,7 +84,7 @@ export const BionicReaderPage: FC = () => {
               onClick={printDocument}
               className='self-start'
             >
-              Download
+              ↓ Download PDF
             </Button>
           </section>
         </div>
