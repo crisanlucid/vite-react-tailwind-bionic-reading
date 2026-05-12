@@ -1,11 +1,4 @@
 import { useRef, useState } from 'react';
-import * as pdfjs from 'pdfjs-dist';
-import mammoth from 'mammoth';
-
-pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-  'pdfjs-dist/build/pdf.worker.mjs',
-  import.meta.url
-).toString();
 
 async function parseTxt(file: File): Promise<string> {
   return new Promise((resolve, reject) => {
@@ -17,6 +10,12 @@ async function parseTxt(file: File): Promise<string> {
 }
 
 async function parsePdf(file: File): Promise<string> {
+  const [pdfjs, workerUrl] = await Promise.all([
+    import('pdfjs-dist'),
+    import('pdfjs-dist/build/pdf.worker.mjs?url'),
+  ]);
+  pdfjs.GlobalWorkerOptions.workerSrc = workerUrl.default;
+
   const arrayBuffer = await file.arrayBuffer();
   const pdf = await pdfjs.getDocument({ data: arrayBuffer }).promise;
   const pages = await Promise.all(
@@ -30,8 +29,9 @@ async function parsePdf(file: File): Promise<string> {
 }
 
 async function parseDocx(file: File): Promise<string> {
+  const mammoth = await import('mammoth');
   const arrayBuffer = await file.arrayBuffer();
-  const result = await mammoth.extractRawText({ arrayBuffer });
+  const result = await mammoth.default.extractRawText({ arrayBuffer });
   return result.value;
 }
 
