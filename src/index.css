@@ -1,3 +1,18 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/forms";
+
+@theme {
+  --font-family-display: 'Open Sans', sans-serif;
+  --font-family-body: 'Open Sans', sans-serif;
+  --breakpoint-mf: 990px;
+  --animate-slide-in: slide-in 0.5s ease-out;
+}
+
+@keyframes slide-in {
+  0%   { transform: translateX(120%); }
+  100% { transform: translateX(0%); }
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
@@ -18,8 +33,3 @@ code {
 .t-text {
   color: gray;
 }
-
-/* config tailwind */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
