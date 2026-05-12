@@ -1,9 +1,6 @@
 module.exports = {
   plugins: {
     "postcss-flexbugs-fixes": {},
-    stylelint: {
-      configFile: "stylelint.config.js",
-    },
     "postcss-import": {},
     "postcss-extend": {},
     "postcss-mixins": {},
