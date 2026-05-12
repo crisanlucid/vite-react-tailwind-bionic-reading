@@ -15,7 +15,7 @@ export const BionicReaderPage: FC = () => {
   const inputRef = useRef<HTMLParagraphElement>(null);
 
   const printDocument = () => {
-    toPng(inputRef.current as HTMLElement, { backgroundColor: '#ffffff' })
+    toPng(inputRef.current as HTMLElement, { backgroundColor: '#ffffff', pixelRatio: 3 })
       .then((imgData) => {
         const pdf = new jsPDF();
         const width = pdf.internal.pageSize.getWidth();
