@@ -2,6 +2,7 @@ import React, { FC, useState, useRef } from 'react';
 
 import { useTextProcessing } from '../hooks/useTextProcessing';
 import { Button, Checkbox, ReadOutput, Textarea } from '../components';
+import { calcPdfImageLayout } from '../util/pdfLayout';
 
 import { toPng } from 'html-to-image';
 import { jsPDF } from 'jspdf';
@@ -18,12 +19,13 @@ export const BionicReaderPage: FC = () => {
     const el = inputRef.current as HTMLElement;
     toPng(el, { backgroundColor: '#ffffff', pixelRatio: 3 })
       .then((imgData) => {
-        const MM_PER_PX = 25.4 / 96;
-        const elWidthMm = el.offsetWidth * MM_PER_PX;
-        const elHeightMm = el.offsetHeight * MM_PER_PX;
         const pdf = new jsPDF();
-        const x = (pdf.internal.pageSize.getWidth() - elWidthMm) / 2;
-        pdf.addImage(imgData, 'PNG', x, 5, elWidthMm, elHeightMm);
+        const { x, y, width, height } = calcPdfImageLayout(
+          el.offsetWidth,
+          el.offsetHeight,
+          pdf.internal.pageSize.getWidth()
+        );
+        pdf.addImage(imgData, 'PNG', x, y, width, height);
         pdf.save(FILE_PDF_NAME);
       })
       .catch((e) => console.error(e));
