@@ -85,7 +85,7 @@ export const BionicReaderPage: FC = () => {
                   loading={isImporting}
                 />
                 <span className='text-xs text-slate-400 dark:text-slate-500'>
-                  * Supported formats: TXT, DOCX, PDF
+                  * Supported formats: TXT, DOCX, PDF, EPUB
                 </span>
               </div>
             )}

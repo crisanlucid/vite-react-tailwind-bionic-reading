@@ -12,7 +12,7 @@ export const ImportButton: FC<ImportButtonProps> = ({ inputRef, onChange, onClic
     <input
       ref={inputRef}
       type='file'
-      accept='.txt,.pdf,.docx'
+      accept='.txt,.pdf,.docx,.epub'
       className='hidden'
       onChange={onChange}
       aria-label='Import file'
