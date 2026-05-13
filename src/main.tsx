@@ -6,7 +6,7 @@ import './index.css';
 
 const router = createBrowserRouter(
   [{ path: '/', element: <App /> }],
-  { basename: '/vite-react-tailwind-bionic-reading/' }
+  { basename: '/primusread/' }
 );
 
 const container = document.getElementById('root');

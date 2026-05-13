@@ -2,6 +2,21 @@
   "name": "primusread",
   "private": true,
   "version": "0.17.0",
+  "keywords": [
+    "primusread",
+    "speed-reading",
+    "fixation-reading",
+    "epub",
+    "epub-reader",
+    "pdf",
+    "reading",
+    "react",
+    "vite",
+    "tailwind",
+    "typescript",
+    "dark-mode",
+    "open-source"
+  ],
   "engines": {
     "node": "22.x"
   },

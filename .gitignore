@@ -15,6 +15,11 @@ dist-ssr
 # Local docs / design specs
 docs/
 
+# Local tooling
+.claude/
+.superpowers/
+*.code-workspace
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

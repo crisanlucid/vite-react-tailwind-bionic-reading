@@ -1,4 +1,8 @@
 
+<p align="center">
+  <img src="./src/assets/primusread_banner.svg" alt="PrimusRead — First letters. Full intelligence." width="100%"/>
+</p>
+
 # PrimusRead
 
 > *First letters. Full intelligence.*
@@ -13,7 +17,7 @@ Open-source **React**, **Vite**, **Tailwind CSS** & **TypeScript** tool that acc
 
 | Light mode | Dark mode |
 |:---:|:---:|
-| ![Light mode](./src/assets/bionic_reader_light.png) | ![Dark mode](./src/assets/bionic_reader_dark.png) |
+| ![Light mode](./src/assets/primusread_light.png) | ![Dark mode](./src/assets/primusread_dark.png) |
 ## What is Next? 🌟
 
 | Name                                                                              | Short Description                                          | Status       |
@@ -37,7 +41,7 @@ npm install && npm run dev
 ```
 
 ## PDF functionality
-![Save text as PDF file](./src/assets/download_functionality.PNG)
+![Save text as PDF file](./src/assets/primusread_pdf_export.PNG)
 
 PDF export uses [`html-to-image`](https://github.com/bubkoo/html-to-image) + [`jsPDF`](https://github.com/parallax/jsPDF). The Read Section is captured as a PNG at **3× pixel ratio** for sharp text, then placed on the page at its true physical size using `src/util/pdfLayout.ts` (`calcPdfImageLayout`) which converts CSS pixels to millimetres (1 px = 25.4 / 96 mm) and centres the image horizontally.
 
