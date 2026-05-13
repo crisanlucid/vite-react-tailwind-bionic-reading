@@ -72,10 +72,10 @@ export const BionicReaderPage: FC = () => {
         <div className='flex items-start justify-between mb-1'>
           <div>
             <h1 className='text-2xl font-bold text-slate-900 dark:text-slate-100'>
-              Bionic Reading
+              PrimusRead
             </h1>
             <p className='text-sm text-slate-500 dark:text-slate-400 mt-0.5'>
-              Speed-read with artificial fixation points
+              First letters. Full intelligence.
             </p>
           </div>
           <div className='flex items-center gap-2'>
