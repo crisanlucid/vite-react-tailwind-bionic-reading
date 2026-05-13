@@ -1,0 +1,1 @@
+var e=`/primusread/assets/pdf.worker-B1D2UnXD.mjs`;export{e as default};
