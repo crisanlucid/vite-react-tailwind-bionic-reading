@@ -1,13 +1,15 @@
 
-# :notebook: Bionic ReadingTool
+# PrimusRead
 
-[![Node.js CI](https://github.com/crisanlucid/vite-react-tailwind-bionic-reading/actions/workflows/nodejs.yml/badge.svg)](https://github.com/crisanlucid/vite-react-tailwind-bionic-reading/actions/workflows/nodejs.yml)
-[![CodeQL](https://github.com/crisanlucid/vite-react-tailwind-bionic-reading/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/crisanlucid/vite-react-tailwind-bionic-reading/actions/workflows/codeql-analysis.yml)
-[![Deploy](https://github.com/crisanlucid/vite-react-tailwind-bionic-reading/actions/workflows/deploy.yml/badge.svg)](https://github.com/crisanlucid/vite-react-tailwind-bionic-reading/actions/workflows/deploy.yml)
+> *First letters. Full intelligence.*
 
-Open-source **React**, **Vite**, **Tailwind CSS** & **TypeScript** app that converts text with artificial fixation points for faster bionic reading. The brain completes each word from its bold starting letters — increasing reading speed by up to 30%. Supports Unicode mode, PDF export, file import (TXT, DOCX, PDF, EPUB), bionic EPUB export, and light/dark theme.
+[![Node.js CI](https://github.com/crisanlucid/primusread/actions/workflows/nodejs.yml/badge.svg)](https://github.com/crisanlucid/primusread/actions/workflows/nodejs.yml)
+[![CodeQL](https://github.com/crisanlucid/primusread/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/crisanlucid/primusread/actions/workflows/codeql-analysis.yml)
+[![Deploy](https://github.com/crisanlucid/primusread/actions/workflows/deploy.yml/badge.svg)](https://github.com/crisanlucid/primusread/actions/workflows/deploy.yml)
 
-**[▶ Live Demo](https://crisanlucid.github.io/vite-react-tailwind-bionic-reading/)**
+Open-source **React**, **Vite**, **Tailwind CSS** & **TypeScript** tool that accelerates document comprehension through AI-driven fixation-point typography. The brain completes each word from its bold starting letters — reducing reading time by up to 30% without loss of retention. Supports Unicode mode, PDF export, file import (TXT, DOCX, PDF, EPUB), bionic EPUB export, and light/dark theme.
+
+**[▶ Live Demo](https://crisanlucid.github.io/primusread/)**
 
 | Light mode | Dark mode |
 |:---:|:---:|
@@ -107,5 +109,5 @@ Merge the `chore: bump version to vX.X.X` PR into `main`. This automatically:
 
 ## Stars history
 
-[![Stargazers over time](https://starchart.cc/crisanlucid/vite-react-tailwind-bionic-reading.svg)](https://starchart.cc/crisanlucid/vite-react-tailwind-bionic-reading)
+[![Stargazers over time](https://starchart.cc/crisanlucid/primusread.svg)](https://starchart.cc/crisanlucid/primusread)
 

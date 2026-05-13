@@ -8,7 +8,7 @@ export default ({ mode }: { mode: string }) => {
   const env = { ...process.env, ...loadEnv(mode, process.cwd()) };
 
   return defineConfig({
-    base: "/vite-react-tailwind-bionic-reading/",
+    base: "/primusread/",
     plugins: [react(), tailwindcss()],
     test: {
       // // Do not process css files (is slow)
