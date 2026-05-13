@@ -111,6 +111,7 @@ export function useFileImport(onImport: (text: string) => void) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [isImporting, setIsImporting] = useState(false);
   const [importError, setImportError] = useState<string | null>(null);
+  const [epubFile, setEpubFile] = useState<File | null>(null);
 
   const openPicker = () => {
     setImportError(null);
@@ -129,9 +130,11 @@ export function useFileImport(onImport: (text: string) => void) {
 
     setIsImporting(true);
     setImportError(null);
+    setEpubFile(null);
     try {
       const text = await parse(file);
       onImport(text);
+      if (file.type === 'application/epub+zip') setEpubFile(file);
     } catch {
       setImportError('Failed to read file. Please try again.');
     } finally {
@@ -140,5 +143,5 @@ export function useFileImport(onImport: (text: string) => void) {
     }
   };
 
-  return { inputRef, isImporting, importError, openPicker, handleFileChange };
+  return { inputRef, isImporting, importError, epubFile, openPicker, handleFileChange };
 }
