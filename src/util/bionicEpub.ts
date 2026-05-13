@@ -1,10 +1,6 @@
-const SKIP_TAGS = new Set(['script', 'style', 'pre', 'code']);
+import { bionicSplit } from './bionicSplit';
 
-function bionicSplit(len: number): number {
-  if (len <= 1) return 0;
-  if (len <= 3) return 1;
-  return Math.floor(len / 2);
-}
+const SKIP_TAGS = new Set(['script', 'style', 'pre', 'code']);
 
 function applyBionicToNode(node: Node): void {
   if (node.nodeType === Node.TEXT_NODE) {
