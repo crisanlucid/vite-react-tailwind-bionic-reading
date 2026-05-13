@@ -1,4 +1,8 @@
 
+<p align="center">
+  <img src="./src/assets/primusread_banner.svg" alt="PrimusRead — First letters. Full intelligence." width="100%"/>
+</p>
+
 # PrimusRead
 
 > *First letters. Full intelligence.*

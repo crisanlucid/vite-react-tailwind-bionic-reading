@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="400" viewBox="0 0 1280 400">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f1f5f9"/>
+      <stop offset="100%" style="stop-color:#e2e8f0"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff"/>
+      <stop offset="100%" style="stop-color:#f8fafc"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1280" height="400" fill="url(#bg)"/>
+
+  <!-- Card shadow (manual) -->
+  <rect x="64" y="48" width="1160" height="320" rx="20" ry="20" fill="#94a3b8" opacity="0.12"/>
+  <rect x="62" y="46" width="1160" height="320" rx="20" ry="20" fill="#94a3b8" opacity="0.08"/>
+
+  <!-- Card -->
+  <rect x="60" y="42" width="1160" height="320" rx="20" ry="20" fill="url(#card)"/>
+
+  <!-- Left column: branding -->
+  <text x="110" y="130" font-family="system-ui, -apple-system, sans-serif" font-size="52" font-weight="700" fill="#0f172a" letter-spacing="-1">PrimusRead</text>
+  <text x="113" y="162" font-family="system-ui, -apple-system, sans-serif" font-size="18" fill="#64748b">First letters. Full intelligence.</text>
+
+  <!-- Divider -->
+  <line x1="110" y1="185" x2="530" y2="185" stroke="#e2e8f0" stroke-width="1.5"/>
+
+  <!-- Feature pills -->
+  <rect x="110" y="200" width="88" height="26" rx="13" fill="#dbeafe"/>
+  <text x="154" y="217" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#2563eb" text-anchor="middle">React 19</text>
+
+  <rect x="208" y="200" width="64" height="26" rx="13" fill="#f0fdf4"/>
+  <text x="240" y="217" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#16a34a" text-anchor="middle">Vite 8</text>
+
+  <rect x="282" y="200" width="92" height="26" rx="13" fill="#fef3c7"/>
+  <text x="328" y="217" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#d97706" text-anchor="middle">Tailwind 4</text>
+
+  <rect x="384" y="200" width="112" height="26" rx="13" fill="#ede9fe"/>
+  <text x="440" y="217" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#7c3aed" text-anchor="middle">TypeScript 6</text>
+
+  <!-- Feature list -->
+  <text x="114" y="264" font-family="system-ui, sans-serif" font-size="14" fill="#475569">&#10003;&#160;&#160;Import TXT &#183; PDF &#183; DOCX &#183; EPUB</text>
+  <text x="114" y="290" font-family="system-ui, sans-serif" font-size="14" fill="#475569">&#10003;&#160;&#160;Export bionic EPUB &#183; PDF</text>
+  <text x="114" y="316" font-family="system-ui, sans-serif" font-size="14" fill="#475569">&#10003;&#160;&#160;Dark mode &#183; Unicode mode &#183; 100% client-side</text>
+
+  <!-- Vertical separator -->
+  <line x1="582" y1="62" x2="582" y2="342" stroke="#e2e8f0" stroke-width="1.5"/>
+
+  <!-- Right column header -->
+  <text x="624" y="94" font-family="system-ui, sans-serif" font-size="11" font-weight="600" letter-spacing="2.5" fill="#94a3b8">OUTPUT PREVIEW</text>
+
+  <!-- Bionic demo text: each word placed individually with exact x coords -->
+  <!-- Line 1: "The brain completes each word" -->
+  <text font-family="Georgia, 'Times New Roman', serif" font-size="23" fill="#1e293b">
+    <tspan x="624" y="136" font-weight="700">Th</tspan><tspan font-weight="400">e</tspan>
+    <tspan x="694" y="136" font-weight="700">bra</tspan><tspan font-weight="400">in</tspan>
+    <tspan x="786" y="136" font-weight="700">com</tspan><tspan font-weight="400">pletes</tspan>
+    <tspan x="972" y="136" font-weight="700">ea</tspan><tspan font-weight="400">ch</tspan>
+    <tspan x="1046" y="136" font-weight="700">wo</tspan><tspan font-weight="400">rd</tspan>
+  </text>
+  <!-- Line 2: "from its bold starting letters." -->
+  <text font-family="Georgia, 'Times New Roman', serif" font-size="23" fill="#1e293b">
+    <tspan x="624" y="170" font-weight="700">fr</tspan><tspan font-weight="400">om</tspan>
+    <tspan x="696" y="170" font-weight="700">it</tspan><tspan font-weight="400">s</tspan>
+    <tspan x="742" y="170" font-weight="700">bo</tspan><tspan font-weight="400">ld</tspan>
+    <tspan x="804" y="170" font-weight="700">star</tspan><tspan font-weight="400">ting</tspan>
+    <tspan x="924" y="170" font-weight="700">let</tspan><tspan font-weight="400">ters.</tspan>
+  </text>
+
+  <line x1="624" y1="192" x2="1190" y2="192" stroke="#f1f5f9" stroke-width="1.5"/>
+
+  <!-- Line 3: "Read faster with fixation-point" -->
+  <text font-family="Georgia, 'Times New Roman', serif" font-size="23" fill="#1e293b">
+    <tspan x="624" y="224" font-weight="700">Re</tspan><tspan font-weight="400">ad</tspan>
+    <tspan x="694" y="224" font-weight="700">fas</tspan><tspan font-weight="400">ter</tspan>
+    <tspan x="780" y="224" font-weight="700">wi</tspan><tspan font-weight="400">th</tspan>
+    <tspan x="844" y="224" font-weight="700">fix</tspan><tspan font-weight="400">ation-point</tspan>
+  </text>
+  <!-- Line 4: "typography." -->
+  <text font-family="Georgia, 'Times New Roman', serif" font-size="23" fill="#1e293b">
+    <tspan x="624" y="256" font-weight="700">typ</tspan><tspan font-weight="400">ography.</tspan>
+  </text>
+
+  <!-- Action buttons row -->
+  <rect x="624" y="295" width="122" height="34" rx="8" fill="#3b82f6"/>
+  <text x="685" y="317" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#ffffff" text-anchor="middle">Convert</text>
+
+  <rect x="758" y="295" width="162" height="34" rx="8" fill="#22c55e"/>
+  <text x="839" y="317" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#ffffff" text-anchor="middle">&#8595; Download PDF</text>
+
+  <rect x="932" y="295" width="196" height="34" rx="8" fill="#6366f1"/>
+  <text x="1030" y="317" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#ffffff" text-anchor="middle">&#8595; Export Bionic EPUB</text>
+</svg>
