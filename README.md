@@ -5,7 +5,7 @@
 [![CodeQL](https://github.com/crisanlucid/vite-react-tailwind-bionic-reading/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/crisanlucid/vite-react-tailwind-bionic-reading/actions/workflows/codeql-analysis.yml)
 [![Deploy](https://github.com/crisanlucid/vite-react-tailwind-bionic-reading/actions/workflows/deploy.yml/badge.svg)](https://github.com/crisanlucid/vite-react-tailwind-bionic-reading/actions/workflows/deploy.yml)
 
-Open-source **React**, **Vite**, **Tailwind CSS** & **TypeScript** app that converts text with artificial fixation points for faster bionic reading. The brain completes each word from its bold starting letters — increasing reading speed by up to 30%. Supports Unicode mode, PDF export, and light/dark theme.
+Open-source **React**, **Vite**, **Tailwind CSS** & **TypeScript** app that converts text with artificial fixation points for faster bionic reading. The brain completes each word from its bold starting letters — increasing reading speed by up to 30%. Supports Unicode mode, PDF export, file import (TXT, DOCX, PDF, EPUB), bionic EPUB export, and light/dark theme.
 
 **[▶ Live Demo](https://crisanlucid.github.io/vite-react-tailwind-bionic-reading/)**
 
@@ -22,6 +22,8 @@ Open-source **React**, **Vite**, **Tailwind CSS** & **TypeScript** app that conv
 | Sharp PDF export                                  | Capture at 3× pixel ratio and render at physical size via `calcPdfImageLayout` (px→mm) — eliminates blurry text in exported PDF | :heavy_check_mark:
 | Reusable UI components                            | Extract Button, Textarea, Checkbox, ReadOutput into `src/components/` — accessible, typed, and independently testable | :heavy_check_mark:
 | Dark mode                                         | Light/dark theme toggle with `localStorage` persistence | :heavy_check_mark:
+| File import (TXT, DOCX, PDF, EPUB)               | Import files via advanced mode toggle — parsed client-side, files never leave the browser | :heavy_check_mark:
+| Bionic EPUB export                                | Export a bionic-formatted `.epub` file with `<b>` fixation points applied to all HTML chapters | :heavy_check_mark:
 | Show characters                                   | Display Characters after textarea | backlog
 | Increase fonts                                   | Create functionality to increase/descrease fonts size | backlog
 
@@ -37,6 +39,21 @@ npm install && npm run dev
 
 PDF export uses [`html-to-image`](https://github.com/bubkoo/html-to-image) + [`jsPDF`](https://github.com/parallax/jsPDF). The Read Section is captured as a PNG at **3× pixel ratio** for sharp text, then placed on the page at its true physical size using `src/util/pdfLayout.ts` (`calcPdfImageLayout`) which converts CSS pixels to millimetres (1 px = 25.4 / 96 mm) and centres the image horizontally.
 
+
+## File Import & EPUB Export
+
+Enable **Advanced mode** (✨ button in the header) to reveal the **Import file** button. Supported formats:
+
+| Format | Import | Export as Bionic |
+|---|---|---|
+| TXT | ✅ | — |
+| DOCX | ✅ | — |
+| PDF | ✅ | — |
+| EPUB | ✅ | ✅ `bionic_*.epub` |
+
+All parsing and export runs **entirely in the browser** — files are never uploaded to a server. PDF and DOCX parsers (`pdfjs-dist`, `mammoth`) and the ZIP engine (`jszip`) are lazy-loaded on demand, so they don't affect the initial page load.
+
+The EPUB export applies bionic fixation points directly to each HTML chapter inside the EPUB, preserving the original structure, images, styles, and metadata.
 
 ## Contribution
 

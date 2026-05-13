@@ -13,6 +13,7 @@ import {
   ThemeToggle,
 } from '../components';
 import { calcPdfImageLayout } from '../util/pdfLayout';
+import { exportBionicEpub } from '../util/bionicEpub';
 
 import { toPng } from 'html-to-image';
 import { jsPDF } from 'jspdf';
@@ -27,8 +28,22 @@ export const BionicReaderPage: FC = () => {
   const outputRef = useRef<HTMLParagraphElement>(null);
   const { theme, toggleTheme } = useTheme();
 
-  const { inputRef: fileInputRef, isImporting, importError, openPicker, handleFileChange } =
+  const { inputRef: fileInputRef, isImporting, importError, epubFile, openPicker, handleFileChange } =
     useFileImport(setText);
+
+  const [isExportingEpub, setIsExportingEpub] = useState(false);
+
+  const handleExportEpub = async () => {
+    if (!epubFile) return;
+    setIsExportingEpub(true);
+    try {
+      await exportBionicEpub(epubFile);
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setIsExportingEpub(false);
+    }
+  };
 
   const printDocument = () => {
     const el = outputRef.current as HTMLElement;
@@ -85,7 +100,7 @@ export const BionicReaderPage: FC = () => {
                   loading={isImporting}
                 />
                 <span className='text-xs text-slate-400 dark:text-slate-500'>
-                  * Supported formats: TXT, DOCX, PDF
+                  * Supported formats: TXT, DOCX, PDF, EPUB
                 </span>
               </div>
             )}
@@ -115,14 +130,27 @@ export const BionicReaderPage: FC = () => {
               listPrepText={listPrepText}
               className='flex-1 min-h-[220px]'
             />
-            <Button
-              variant='success'
-              disabled={isDisabled}
-              onClick={printDocument}
-              className='self-start'
-            >
-              ↓ Download PDF
-            </Button>
+            <div className='flex items-center gap-3 flex-wrap'>
+              <Button
+                variant='success'
+                disabled={isDisabled}
+                onClick={printDocument}
+                className='self-start'
+              >
+                ↓ Download PDF
+              </Button>
+              {epubFile && (
+                <Button
+                  variant='primary'
+                  disabled={isExportingEpub}
+                  onClick={handleExportEpub}
+                  loading={isExportingEpub}
+                  className='self-start'
+                >
+                  ↓ Export Bionic EPUB
+                </Button>
+              )}
+            </div>
           </section>
         </div>
       </div>
